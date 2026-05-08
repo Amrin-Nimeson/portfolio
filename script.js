@@ -118,39 +118,6 @@ menuLinks.forEach(l => l.addEventListener('click', closeMenu));
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 window.addEventListener('resize', () => { if (innerWidth > 1024) closeMenu(); });
 
-// ── Pricing toggle ──
-const pToggle = document.getElementById('pricingToggle');
-const mLabel = document.getElementById('monthlyLabel');
-const aLabel = document.getElementById('annualLabel');
-const saveBadge = document.getElementById('saveBadge');
-const monthlyOpts = document.querySelectorAll('.price-option.monthly');
-const annualOpts = document.querySelectorAll('.price-option.annual');
-let annual = false;
-
-function setPricing() {
-  annual = !annual;
-  pToggle.classList.toggle('annual', annual);
-  pToggle.setAttribute('aria-checked', annual);
-  mLabel.classList.toggle('active', !annual);
-  aLabel.classList.toggle('active', annual);
-  saveBadge.classList.toggle('show', annual);
-  monthlyOpts.forEach(el => el.classList.toggle('active', !annual));
-  annualOpts.forEach(el => el.classList.toggle('active', annual));
-}
-pToggle.addEventListener('click', setPricing);
-pToggle.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setPricing(); } });
-
-// ── FAQ accordion ──
-const faqItems = document.querySelectorAll('.faq-item');
-const faqToggleAll = document.getElementById('faqToggleAll');
-let allExpanded = false;
-
-document.querySelectorAll('.faq-question').forEach(btn => {
-  btn.addEventListener('click', () => {
-    btn.parentElement.classList.toggle('open');
-    updateFaqToggleLabel();
-  });
-});
 
 faqToggleAll.addEventListener('click', () => {
   allExpanded = !allExpanded;
